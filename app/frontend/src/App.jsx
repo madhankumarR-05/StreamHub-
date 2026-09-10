@@ -1,5 +1,9 @@
 import "./App.css";
 
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import MovieRow from "./components/MovieRow";
+
 function App() {
   const trendingMovies = [
     { id: 1, title: "The Last Horizon", year: 2026 },
@@ -10,48 +14,15 @@ function App() {
 
   return (
     <div className="app">
-      <nav className="navbar">
-        <h1 className="logo">STREAMHUB</h1>
-
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#movies">Movies</a>
-          <a href="#series">Series</a>
-          <a href="#my-list">My List</a>
-        </div>
-      </nav>
+      <Navbar />
 
       <main>
-        <section className="hero" id="home">
-          <div className="hero-content">
-            <p className="hero-label">STREAMHUB ORIGINAL</p>
+        <Hero />
 
-            <h2>Unlimited entertainment.</h2>
-
-            <p>
-              Discover movies, series and stories worth watching.
-            </p>
-
-            <button>▶ Start Watching</button>
-          </div>
-        </section>
-
-        <section className="movie-section" id="movies">
-          <h2>Trending Now</h2>
-
-          <div className="movie-row">
-            {trendingMovies.map((movie) => (
-              <div className="movie-card" key={movie.id}>
-                <div className="movie-placeholder">
-                  <span>{movie.id}</span>
-                </div>
-
-                <h3>{movie.title}</h3>
-                <p>{movie.year}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <MovieRow
+          title="Trending Now"
+          movies={trendingMovies}
+        />
       </main>
     </div>
   );
