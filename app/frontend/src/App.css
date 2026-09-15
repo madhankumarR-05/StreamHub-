@@ -4,119 +4,272 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b1020;
+  color: #f5f7fa;
 }
 
 .app {
   min-height: 100vh;
-  background: #111;
+  background: #0b1020;
 }
+
+/* =========================
+   NAVBAR
+   ========================= */
 
 .navbar {
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
-  background: #111;
+  padding: 0 50px;
+
+  background: #11182d;
+  border-bottom: 1px solid #26304a;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
   margin: 0;
-  font-size: 24px;
+  color: #ff3b5c;
+  font-size: 25px;
+  font-weight: 800;
   letter-spacing: 2px;
 }
 
 .nav-links {
   display: flex;
-  gap: 25px;
+  gap: 30px;
 }
 
 .nav-links a {
-  color: #ddd;
+  color: #b8c0d4;
   text-decoration: none;
+  font-size: 15px;
+  transition: 0.2s;
 }
 
 .nav-links a:hover {
-  color: white;
+  color: #ffffff;
 }
 
+/* =========================
+   HERO
+   ========================= */
+
 .hero {
-  min-height: 500px;
+  min-height: 520px;
+
   display: flex;
   align-items: center;
-  padding: 60px;
-  background: linear-gradient(
-    90deg,
-    #111 0%,
-    #222 60%,
-    #111 100%
-  );
+
+  padding: 70px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0b1020 0%,
+      #11182d 45%,
+      rgba(17, 24, 45, 0.65) 70%,
+      #0b1020 100%
+    );
+
+  border-bottom: 1px solid #26304a;
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 650px;
 }
 
 .hero-label {
-  font-size: 14px;
+  color: #ff3b5c;
+  font-size: 13px;
+  font-weight: bold;
   letter-spacing: 3px;
 }
 
 .hero h2 {
-  font-size: 56px;
+  font-size: 58px;
+  line-height: 1.05;
   margin: 15px 0;
 }
 
 .hero p {
+  color: #b8c0d4;
   font-size: 18px;
-  color: #ccc;
+  line-height: 1.6;
 }
 
 .hero button {
   margin-top: 20px;
-  padding: 14px 24px;
+
+  padding: 14px 25px;
+
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+
+  background: #ff3b5c;
+  color: white;
+
   font-size: 16px;
+  font-weight: bold;
+
   cursor: pointer;
+
+  transition: 0.2s;
 }
 
+.hero button:hover {
+  background: #ff5874;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   MOVIE SECTION
+   ========================= */
+
 .movie-section {
-  padding: 40px;
+  padding: 35px 50px;
 }
 
 .movie-section h2 {
-  font-size: 28px;
+  margin-bottom: 20px;
+
+  color: #ffffff;
+
+  font-size: 25px;
 }
+
+/* =========================
+   MOVIE ROW
+   ========================= */
 
 .movie-row {
   display: flex;
   gap: 20px;
+
   overflow-x: auto;
+
+  padding-bottom: 15px;
+
+  scrollbar-width: thin;
 }
+
+.movie-row::-webkit-scrollbar {
+  height: 7px;
+}
+
+.movie-row::-webkit-scrollbar-track {
+  background: #11182d;
+}
+
+.movie-row::-webkit-scrollbar-thumb {
+  background: #34405f;
+  border-radius: 10px;
+}
+
+/* =========================
+   MOVIE CARD
+   ========================= */
 
 .movie-card {
   min-width: 190px;
+
+  background: #151d34;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+
+  cursor: pointer;
 }
 
-.movie-placeholder {
+.movie-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.movie-card img {
+  width: 190px;
   height: 270px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #333;
-  border-radius: 5px;
-  font-size: 40px;
+
+  display: block;
+
+  object-fit: cover;
 }
 
 .movie-card h3 {
-  margin-bottom: 5px;
+  margin: 12px 12px 5px;
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movie-card p {
-  margin-top: 0;
-  color: #aaa;
+  margin: 0 12px 14px;
+
+  color: #8f9bb5;
+
+  font-size: 13px;
+}
+
+/* =========================
+   NO IMAGE
+   ========================= */
+
+.movie-placeholder {
+  width: 190px;
+  height: 270px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #202a46;
+
+  color: #8f9bb5;
+
+  font-size: 15px;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .hero {
+    min-height: 450px;
+    padding: 40px 25px;
+  }
+
+  .hero h2 {
+    font-size: 40px;
+  }
+
+  .movie-section {
+    padding: 30px 20px;
+  }
 }

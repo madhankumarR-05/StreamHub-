@@ -1,12 +1,24 @@
 function MovieCard({ movie }) {
+  const posterUrl = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    : null;
+
   return (
     <div className="movie-card">
-      <div className="movie-placeholder">
-        <span>{movie.id}</span>
-      </div>
+      {posterUrl ? (
+        <img
+          src={posterUrl}
+          alt={movie.title}
+        />
+      ) : (
+        <div className="movie-placeholder">
+          No Image
+        </div>
+      )}
 
       <h3>{movie.title}</h3>
-      <p>{movie.year}</p>
+
+      <p>{movie.release_date}</p>
     </div>
   );
 }
