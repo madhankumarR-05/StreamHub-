@@ -11,23 +11,28 @@ getPopularMovies,
 getTopRatedMovies,
 } from "./services/tmdb";
 
+import { getMovies } from "./services/api";
+
 function App() {
 const [trendingMovies, setTrendingMovies] = useState([]);
 const [popularMovies, setPopularMovies] = useState([]);
 const [topRatedMovies, setTopRatedMovies] = useState([]);
+const [databaseMovies, setDatabaseMovies] = useState([]);
 
 useEffect(() => {
 async function loadMovies() {
 try {
-const [trending, popular, topRated] = await Promise.all([
+const [trending, popular, topRated, databaseMovies] = await Promise.all([
 getTrendingMovies(),
 getPopularMovies(),
 getTopRatedMovies(),
+getMovies(),
 ]);
 
     setTrendingMovies(trending.results);
     setPopularMovies(popular.results);
     setTopRatedMovies(topRated.results);
+    setDatabaseMovies(databaseMovies);
   } catch (error) {
     console.error("Failed to load movies:", error);
   }
@@ -55,6 +60,10 @@ return ( <div className="app"> <Navbar />
     <MovieRow
       title="Top Rated Movies"
       movies={topRatedMovies}
+    />
+    <MovieRow
+     title="StreamHub Movies"
+      movies={databaseMovies} 
     />
   </main>
 </div>
