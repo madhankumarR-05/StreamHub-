@@ -39,3 +39,21 @@ def create_movie():
         "year": movie.year,
         "genre": movie.genre
     }), 201
+
+@movies_bp.put("/api/movies/<int:movie_id>")
+def update_movie(movie_id):
+    movie = Movie.query.get_or_404(movie_id)
+    data = request.get_json()
+
+    movie.title = data["title"]
+    movie.year = data["year"]
+    movie.genre = data["genre"]
+
+    db.session.commit()
+
+    return jsonify({
+        "id": movie.id,
+        "title": movie.title,
+        "year": movie.year,
+        "genre": movie.genre
+    })
