@@ -57,3 +57,14 @@ def update_movie(movie_id):
         "year": movie.year,
         "genre": movie.genre
     })
+
+@movies_bp.delete("/api/movies/<int:movie_id>")
+def delete_movie(movie_id):
+    movie = Movie.query.get_or_404(movie_id)
+
+    db.session.delete(movie)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Movie deleted successfully"
+    })
