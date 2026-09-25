@@ -24,6 +24,13 @@ def get_movies():
 def create_movie():
     data = request.get_json()
 
+    if not data or not all(
+        field in data for field in ["title", "year", "genre"]
+    ):
+        return jsonify({
+            "error": "title, year and genre are required"
+        }), 400
+
     movie = Movie(
         title=data["title"],
         year=data["year"],
