@@ -7,7 +7,14 @@ movies_bp = Blueprint("movies", __name__)
 
 @movies_bp.get("/api/movies")
 def get_movies():
-    movies = Movie.query.all()
+    search = request.args.get("search")
+
+    query = Movie.query
+
+    if search:
+        query = query.filter(Movie.title.ilike(f"%{search}%"))
+
+    movies = query.all()
 
     return jsonify([
         {
@@ -19,6 +26,21 @@ def get_movies():
         for movie in movies
     ])
 
+@movies_bp.get("/api/movies/<int:movie_id>")
+def get_movie(movie_id):
+    movie = Movie.query.get(movie_id)
+
+    if not movie:
+        return jsonify({
+            "error": "Movie not found"
+        }), 404
+
+    return jsonify({
+        "id": movie.id,
+        "title": movie.title,
+        "year": movie.year,
+        "genre": movie.genre
+    })
 
 @movies_bp.post("/api/movies")
 def create_movie():
