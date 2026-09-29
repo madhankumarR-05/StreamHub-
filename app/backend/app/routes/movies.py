@@ -8,11 +8,19 @@ movies_bp = Blueprint("movies", __name__)
 @movies_bp.get("/api/movies")
 def get_movies():
     search = request.args.get("search")
+    genre = request.args.get("genre")
 
     query = Movie.query
 
     if search:
-        query = query.filter(Movie.title.ilike(f"%{search}%"))
+        query = query.filter(
+            Movie.title.ilike(f"%{search}%")
+        )
+
+    if genre:
+        query = query.filter(
+            Movie.genre.ilike(genre)
+        )
 
     movies = query.all()
 
